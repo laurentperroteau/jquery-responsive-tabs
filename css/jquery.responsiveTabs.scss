@@ -1,0 +1,133 @@
+
+/* Accordion to tabs layout (necessary) */
+/* ------------------------------------ */
+
+// This breakpoint need adding in option when call plugin
+// elem.accordionToTabs({
+//      breakpoint: '600px'
+// })
+$tab-breakpoint: 600px; // can be px, ems, rems
+
+.tab-menu-mobile {
+    display: inline-block;
+
+    &:before {
+        /* Label of accordion are copied in pseudo-selector (work on IE8+) */
+        content: attr(data-tab-label);
+        display: block;
+    }
+}
+
+.tab-container { position: relative }
+
+/* Smaller device */
+@media only screen and (max-width: $tab-breakpoint - 1) {
+
+    .tab-menu { display: none }
+
+    .tab-container--inner { 
+        max-height: 0; overflow: hidden; visibility: hidden;
+        // Compass mixins
+        // @include transition-property(max-height, visibility);
+        // @include transition-duration(600ms);
+        // @include transition-timing-function(linear);
+        -webkit-transition-property: max-height, visibility;
+        -moz-transition-property: max-height, visibility;
+        -o-transition-property: max-height, visibility;
+        transition-property: max-height, visibility;
+        -webkit-transition-duration: 600ms;
+        -moz-transition-duration: 600ms;
+        -o-transition-duration: 600ms;
+        transition-duration: 600ms;
+        -webkit-transition-timing-function: linear;
+        -moz-transition-timing-function: linear;
+        -o-transition-timing-function: linear;
+        transition-timing-function: linear;
+    }
+
+    .tab-container--section.is-visible .tab-container--inner {
+        max-height: 1500px;
+        visibility: visible;
+    }
+}
+
+/* Higher device */
+@media only screen and (min-width: $tab-breakpoint) {
+
+    .tab-menu-mobile { display: none }
+
+    .tab-container--section {
+        position: absolute; left: 0; top: 0;
+        z-index: 0; visibility: hidden;
+
+        &.is-visible { 
+            position: relative; left: auto; top: auto; z-index: 1; 
+            visibility: visible;
+        }
+    }
+}
+
+
+
+
+/* Accordion to tabs style (optional) */
+/* ---------------------------------- */
+
+$colorLight: #f7f7f7;
+$colorDark: #bbb;
+
+body { font: 15px Arial, "Helvetica", sans-serif }
+
+.tab-menu-mobile, .tab-menu--trigger {
+    height: 50px; line-height: 50px;
+    border-bottom: 1px solid $colorDark;
+    background-color: $colorLight;
+    font-size: 18px; color: #666; 
+    text-align: center; text-decoration: none;
+    // Compass mixin
+    // @include single-transition(background, 600ms; linear);
+    -webkit-transition: background 300ms linear;
+    -moz-transition: background 300ms linear;
+    -o-transition: background 300ms linear;
+    transition: background 300ms linear;
+ 
+    &.is-active {
+        background-color: $colorDark;
+        color: white;
+    }
+}
+
+// Menu mobile
+.tab-menu-mobile {
+    width: 100%; 
+    
+    &:before {
+        content: attr(data-tab-label);
+        display: block;
+    }
+
+}
+
+// Menu higher
+.tab-menu {
+    padding: 0;
+    border-bottom: 1px solid $colorDark;
+
+    li { 
+        float: left;
+        width: 100 / 3 * 1%;
+        list-style: none;
+    }
+}
+
+.tab-menu--trigger {
+    display: block;
+}
+
+// Clearfix 
+// @see: http://www.css-101.org/articles/clearfix/latest-new-clearfix-so-far.php
+.cf:after, %cf:after, .clearfix:after {
+    content: '';
+    display: table;
+    clear: both;
+}

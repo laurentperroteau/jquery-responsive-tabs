@@ -1,0 +1,68 @@
+<html>
+    <head>
+        <meta charset="utf8">
+        <link rel="stylesheet" href="css/jquery.responsiveTabs.css">
+    </head>
+    <body>
+        <ul class="tab-menu clearfix">
+            <li>
+                <a href="#tab-one" class="tab-menu--trigger">Title tabs n°1</a>
+            </li>
+            <li>
+                <a href="#tab-two" class="tab-menu--trigger">Title tabs n°2</a>
+            </li>
+            <li>
+                <a href="#tab-three" class="tab-menu--trigger">Title tabs n°3</a>
+            </li>
+        </ul>
+
+        <div id="jsAccordionToTabs" class="tab-container">
+            <section id="tab-one" class="tab-container--section">
+                <a href="#tab-one" class="tab-menu-mobile" data-tab-label="Title tabs n°1"></a>
+                <div class="tab-container--inner">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores est natus assumenda corrupti fuga vero. Omnis aperiam hic culpa quisquam velit inventore, esse placeat, reiciendis quia. Ut possimus quam reiciendis.
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic, at illo, iure beatae qui similique architecto sed iste minima reprehenderit excepturi fuga temporibus corporis deserunt ex magni quam, ipsam nulla.
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores est natus assumenda corrupti fuga vero. Omnis aperiam hic culpa quisquam velit inventore, esse placeat, reiciendis quia. Ut possimus quam reiciendis.
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic, at illo, iure beatae qui similique architecto sed iste minima reprehenderit excepturi fuga temporibus corporis deserunt ex magni quam, ipsam nulla.
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores est natus assumenda corrupti fuga vero. Omnis aperiam hic culpa quisquam velit inventore, esse placeat, reiciendis quia. Ut possimus quam reiciendis.
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic, at illo, iure beatae qui similique architecto sed iste minima reprehenderit excepturi fuga temporibus corporis deserunt ex magni quam, ipsam nulla.
+                </div>
+            </section>
+            <section id="tab-two" class="tab-container--section">
+                <a href="#tab-two" class="tab-menu-mobile" data-tab-label="Title tabs n°2"></a>
+                <div class="tab-container--inner cf">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis autem molestiae, doloribus! Blanditiis voluptatum, totam quaerat voluptates veritatis, odio beatae nulla impedit eius. A non quos facilis, aut quasi incidunt.
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores est natus assumenda corrupti fuga vero. Omnis aperiam hic culpa quisquam velit inventore, esse placeat, reiciendis quia. Ut possimus quam reiciendis.
+                </div>
+            </section>
+            <section id="tab-three" class="tab-container--section">
+                <a href="#tab-three" class="tab-menu-mobile" data-tab-label="Title tabs n°3"></a>
+                <div class="tab-container--inner">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, atque hic veritatis cumque esse. Dignissimos incidunt voluptas eveniet cupiditate beatae. Obcaecati fugiat natus doloribus! Repudiandae eius eveniet tenetur nobis, totam!
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores est natus assumenda corrupti fuga vero. Omnis aperiam hic culpa quisquam velit inventore, esse placeat, reiciendis quia. Ut possimus quam reiciendis.
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic, at illo, iure beatae qui similique architecto sed iste minima reprehenderit excepturi fuga temporibus corporis deserunt ex magni quam, ipsam nulla.
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores est natus assumenda corrupti fuga vero. Omnis aperiam hic culpa quisquam velit inventore, esse placeat, reiciendis quia. Ut possimus quam reiciendis.
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic, at illo, iure beatae qui similique architecto sed iste minima reprehenderit excepturi fuga temporibus corporis deserunt ex magni quam, ipsam nulla.
+                </div>
+            </section>
+        </div>
+    
+        <script src="vendor/jquery-1.10.2.min.js"></script>
+        <script src="vendor/matchMedia.js"></script>
+        <script src="vendor/jquery.scrollTo.min.js"></script>
+        <script src="jquery.responsiveTabs.js"></script>
+        <script>
+            $(function() {
+
+                var $tabs = $('.tab-container').accordionToTabs({
+                    breakpoint: '600px'
+                });
+
+                setTimeout(function() {
+                    // id de la tab
+                    $tabs.accordionToTabs('activeTab', 'tab-three');
+                }, 5000);
+            });
+        </script>
+    </body>
+</html>
