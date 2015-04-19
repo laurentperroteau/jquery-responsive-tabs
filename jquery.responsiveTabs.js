@@ -15,7 +15,9 @@
             classMenuHigher:         '.tab-menu',
             classMenuHigherTrigger:  '.tab-menu--trigger',
             classTabsSection:        '.tab-container--section',
-            breakpoint:              '600px' // can be px, ems, rems
+            breakpoint:              '990px', // can be px, ems, rems
+            duration:                 0,
+            tabOffset:                0
         };
 
     // The actual plugin constructor
@@ -38,7 +40,7 @@
         },
 
         cache: {
-            flagTabOpen: false
+            flagTabOpen: 'firstTime'
         },
 
         activeTab: function(idTabToActivate) {
@@ -187,18 +189,27 @@
             if( matchMedia('only screen and (max-width: '+ this.options.breakpoint +')').matches 
                 && this.cache.flagTabOpen != false ) 
             {
-                // Si la tab active était avant, on scroll
-                if( this.cache.flagTabOpen.index() > $tab.index() ) 
-                {
-                    $.scrollTo( '#'+ $tab.attr('id'), 1000);
+                if( this.cache.flagTabOpen.length || this.cache.flagTabOpen == 'firstTime' ) {
+
+                    var wait = this.options.duration;
+
+                    if( this.cache.flagTabOpen != 'firstTime' )
+                        if( this.cache.flagTabOpen.index() < $tab.index() ) 
+                            var wait = wait * 2;
+
+                    var  _this = this;
+
+                    setTimeout(function() {
+
+                        $.scrollTo( 
+                            '#'+ $tab.attr('id'), 
+                                _this.options.duration, 
+                                {offset: _this.options.tabOffset} 
+                        );
+                    }, wait);
                 }
                 else {
-                    // Si la tab active était après, on scroll à celle-ci 
-                    //     et le temps qu'elle se ferme et on scroll
-                    // $.scrollTo( '#'+ this.cache.flagTabOpen.attr('id'), 1000 );
-                    setTimeout(function() {
-                        $.scrollTo( '#'+ $tab.attr('id'), 1000 );
-                    }, 1000);
+                    this.cache.flagTabOpen = false;
                 }
             }
 
