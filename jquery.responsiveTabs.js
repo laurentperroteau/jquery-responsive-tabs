@@ -78,9 +78,13 @@
 
                 // Action en mobile
                 $container.find( this.options.classMenuSmaller ).on('click', function(e) {
-                    e.preventDefault();
+                    
+                    // Check if anchor
+                    if( $(this).attr('href')[0] == '#' ) {
+                      e.preventDefault();
 
-                    self._actionOnClickSmaller( $(this), $container );
+                      self._actionOnClickSmaller( $(this), $container );
+                    }
                 });
 
                 // Action en tablet/desktop
